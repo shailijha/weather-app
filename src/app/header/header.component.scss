@@ -1,0 +1,12 @@
+.navbar {
+    background-color: black;
+}
+
+.collapse ul.navbar-nav>li>a, .navbar-header a {
+    color: white;
+}
+
+.collapse ul.navbar-nav>li>a:hover, .navbar-header a:hover{
+    background-color: #A2C0C0;
+    color: black;
+}

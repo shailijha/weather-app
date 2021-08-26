@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Preview</h2>
+            <label for="location">Enter your location</label>
+            <input id="location" type="text" class="form-control" [(ngModel)]="location" placeholder="Enter location" required autofocus>
+            <span *ngIf="locErr">*Please enter a valid location</span>
+            <br>
+            <br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <button class="btn btn-primary btn-styling" type="submit" (click)="fetchToday()">Today</button>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary btn-styling"  ngDefaultControl [(ngModel)]='fetchWeek' type="submit" (click)="fetchWeekly()">Weekly</button>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary btn-styling"  ngDefaultControl [(ngModel)]='fetchHour' type="submit" (click)="fetchHourly()">Hourly</button>
+        </div>
+    </div>
+    <div class="row" *ngIf="fetchTod">
+        <div class="col-md-6 weather-card">
+            <h4>Location: {{today.city}}, {{today.state}}, {{today.country}}</h4>
+            <p><b>Date:</b> {{today.date}}</p> <img src={{today.iconLink}} alt={{today.iconName}}>
+            <p>{{today.description}}</p>
+            <p><b>Temp:</b> {{today.temperature}} &ordm;F</p>
+            <p><b>High:</b> {{today.highTemperature}} &ordm;F</p>
+            <p><b>Low:</b> {{today.lowTemperature}} &ordm;F</p>
+        </div>
+    </div>
+    <div class="row" *ngIf="fetchWeek">
+        <div class="col-md-2 weather-card" *ngFor="let wkDay of weekly">
+            <h4>{{wkDay.weekday}}</h4>
+            <img src={{wkDay.iconLink}} alt={{wkDay.iconName}}>
+            <p>{{wkDay.description}}</p>
+            <p>High : {{wkDay.highTemperature}} &ordm;F</p>
+            <p>Low : {{wkDay.lowTemperature}} &ordm;F</p>
+        </div>
+    </div>
+    <div class="row" *ngIf="fetchHour">
+        <div class="col-md-1 weather-card" *ngFor="let hour of hourly">
+            <img src={{hour.iconLink}} alt={{hour.iconName}}>
+            <h4>{{hour.time}}</h4>
+            <p>{{hour.temperatureDesc}}</p>
+            <p>{{hour.temperature}} &ordm;F</p>
+        </div>
+    </div>
+</div>
